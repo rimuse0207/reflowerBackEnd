@@ -36,7 +36,6 @@ let number;
 /* GET users listing. */
 router.get("/", function (req, res) {
   res.json(data);
-  res.send();
 });
 router.post("/qwe", async (req, res) => {
   try {
