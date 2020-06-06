@@ -33,6 +33,12 @@ let number;
   }
 }
 
+router.all("/*", function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
+
 /* GET users listing. */
 router.get("/", function (req, res) {
   res.json(data);
