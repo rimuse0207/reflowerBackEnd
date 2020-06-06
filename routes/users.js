@@ -13,25 +13,6 @@ const HOST = "http://api.nongsaro.go.kr/service/garden/gardenList";
 const requestUrl = `${HOST}?apiKey=${process.env.APIKEY}&&numOfRows=217`;
 const HOST2 = "http://api.nongsaro.go.kr/service/garden/gardenDtl";
 const requestUrl2 = `${HOST2}?apiKey=${process.env.APIKEY}&&cntntsNo=`;
-let data3 = false;
-let number;
-{
-  try {
-    request(
-      {
-        url: requestUrl,
-        method: "GET",
-      },
-      (error, response, xml) => {
-        const json = JSON.parse(parser.toJson(xml));
-        data = json.response.body.items.item;
-        console.log(requestUrl);
-      }
-    );
-  } catch (error) {
-    console.log("asdasd", error);
-  }
-}
 
 router.all("/*", function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -40,13 +21,29 @@ router.all("/*", function (req, res, next) {
 });
 
 /* GET users listing. */
-router.get("/", function (req, res) {
-  res.json(data);
+router.get("/", async (req, res) => {
+  try {
+    let data = null;
+    await request(
+      {
+        url: requestUrl,
+        method: "GET",
+      },
+      (error, response, xml) => {
+        const json = JSON.parse(parser.toJson(xml));
+        data = json.response.body.items.item;
+        console.log(requestUrl);
+        res.json(data);
+      }
+    );
+  } catch (error) {
+    console.log("asdasd", error);
+  }
 });
 router.post("/qwe", async (req, res) => {
   try {
-    data3 = null;
-    number = req.body.number;
+    let data3 = null;
+    let number = req.body.number;
     console.log(number);
     await request(
       {
