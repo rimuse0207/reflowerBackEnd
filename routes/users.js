@@ -39,7 +39,7 @@ router.get("/", async (req, res) => {
         const json = JSON.parse(parser.toJson(xml));
         data = json.response.body.items.item;
         console.log(requestUrl);
-        res.json(data);
+        res.json({ data: data });
       }
     );
   } catch (error) {
