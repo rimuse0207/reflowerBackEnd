@@ -16,12 +16,18 @@ const requestUrl2 = `${HOST2}?apiKey=${process.env.APIKEY}&&cntntsNo=`;
 
 router.all("/*", function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
+  res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+  res.header("Access-Control-Allow-Credentials", true);
   next();
 });
 
 /* GET users listing. */
 router.get("/", async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
+  res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+  res.header("Access-Control-Allow-Credentials", true);
   try {
     let data = null;
     await request(
@@ -41,6 +47,10 @@ router.get("/", async (req, res) => {
   }
 });
 router.post("/qwe", async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
+  res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+  res.header("Access-Control-Allow-Credentials", true);
   try {
     let data3 = null;
     let number = req.body.number;
@@ -62,10 +72,18 @@ router.post("/qwe", async (req, res) => {
   }
 });
 router.get(`/qwe`, (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
+  res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+  res.header("Access-Control-Allow-Credentials", true);
   res.json(data3);
   res.send();
 });
 router.post("/login", async (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
+  res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+  res.header("Access-Control-Allow-Credentials", true);
   try {
     var cipher = crypto.createCipher("aes192", "나만아는 비밀번호");
     cipher.update(req.body.password, "utf8", "base64");
@@ -102,6 +120,10 @@ router.post("/login", async (req, res, next) => {
 });
 
 router.post("/signUp", async (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
+  res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+  res.header("Access-Control-Allow-Credentials", true);
   console.log("singup Test");
   try {
     console.log(req.body);
@@ -135,6 +157,10 @@ router.post("/signUp", async (req, res, next) => {
 });
 
 router.post("/qqq", (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
+  res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+  res.header("Access-Control-Allow-Credentials", true);
   User.find({ email: "qwe" })
     .then((users) => {
       res.json(users);

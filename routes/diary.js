@@ -33,6 +33,10 @@ router.get("/", function (req, res, next) {
 });
 
 router.get("/readDiary", async (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
+  res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+  res.header("Access-Control-Allow-Credentials", true);
   try {
     const diary = await User.find((error, data) => {
       console.log("follow me");
@@ -51,6 +55,10 @@ router.get("/readDiary", async (req, res, next) => {
 });
 
 router.post("/newDiary", upload.array("img", 12), async (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
+  res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+  res.header("Access-Control-Allow-Credentials", true);
   const reqFiles = [];
   for (var i = 0; i < req.files.length; i++) {
     reqFiles.push(req.files[i].filename);
@@ -75,6 +83,10 @@ router.post("/newDiary", upload.array("img", 12), async (req, res, next) => {
 });
 
 router.post("/delete", async (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
+  res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+  res.header("Access-Control-Allow-Credentials", true);
   try {
     await User.deleteOne({
       _id: req.body.id,
@@ -87,6 +99,10 @@ router.post("/delete", async (req, res, next) => {
 });
 
 router.post("/comment", async (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
+  res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+  res.header("Access-Control-Allow-Credentials", true);
   console.log(req.body);
   try {
     const newComment = await Comment({
@@ -104,6 +120,10 @@ router.post("/comment", async (req, res, next) => {
 });
 
 router.get("/comment/:id", async (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
+  res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+  res.header("Access-Control-Allow-Credentials", true);
   try {
     const DataComment = await Comment.find({
       id: req.params.id,
